@@ -1,13 +1,17 @@
 package ua.hanasaka.mvc2;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
+
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import java.io.IOException;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -16,11 +20,30 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    String TAG = "myLogs";
     @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+    public void useOkHttp() throws Exception {
+        System.out.println("YYY");
+        Log.d(TAG, "Start!");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://publicobject.com/helloworld.txt")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
 
-        assertEquals("ua.hanasaka.mvc2", appContext.getPackageName());
+            @Override
+            public void onFailure(Request request, IOException e) {
+                System.out.println("onFailure!!!");
+                Log.d(TAG, e.getClass()+" mess= "+e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                Log.d(TAG, "onResponse");
+                if (!response.isSuccessful())
+                    throw new IOException("Unexpected code " + response);
+                Log.d(TAG, response.body().string());
+            }
+        });
     }
 }
