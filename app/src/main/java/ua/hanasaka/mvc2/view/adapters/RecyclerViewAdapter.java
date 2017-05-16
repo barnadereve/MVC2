@@ -34,8 +34,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Repo Repo = repoList.get(i);
-        viewHolder.name.setText(Repo.getName());
+        Repo repo = repoList.get(i);
+        viewHolder.name.setText(repo.getName());
     }
 
     @Override
