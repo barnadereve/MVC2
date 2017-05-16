@@ -17,7 +17,7 @@ import ua.hanasaka.mvc2.view.View;
  */
 
 public class RepoListPresenter implements Presenter {
-    String TAG = "myLogs";
+    private String TAG = "myLogs";
     private Model model = new ModelImpl();
     private Subscription subscription = Subscriptions.empty();
     private View view;
