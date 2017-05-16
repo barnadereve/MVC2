@@ -31,7 +31,6 @@ public class RepoListPresenter implements Presenter {
         if (!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
-        Log.d(TAG, "RepoListPresenter on Click");
 
         subscription = model.getRepoList(view.getUserName())
                 .subscribe(new Observer<List<Repo>>() {
@@ -48,7 +47,6 @@ public class RepoListPresenter implements Presenter {
 
                     @Override
                     public void onNext(List<Repo> data) {
-                        Log.d(TAG, "onNext");
                         if (data != null && !data.isEmpty()) {
                             view.showData(data);
                         } else {
