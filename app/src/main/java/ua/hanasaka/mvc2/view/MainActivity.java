@@ -21,7 +21,7 @@ import ua.hanasaka.mvc2.presenter.RepoListPresenter;
 import ua.hanasaka.mvc2.view.adapters.RecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity implements View{
-    String TAG = "myLogs";
+    private String TAG = "myLogs";
 
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
